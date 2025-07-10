@@ -1,5 +1,3 @@
-
-
 def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
@@ -9,39 +7,44 @@ def parse_input(user_input):
 def input_error(func):
     def inner(*args, **kwargs):
         try:
+            print((args[0])[0])
             
             return func(*args,**kwargs)
         except ValueError:
             if len(args[0])<2:
                 return 'Give me phone'
+            
+            
+            
         except IndexError:
             if not args[0]:
                 return 'Give me the name'
+            if  args[0][0] not in args[1].keys():
+                return f'{str(args[0])} not have  a phone'
+            
+            
         except KeyError:
             if  args[0][0] not in args[1].keys():
                 return f'{str(args[0])} not have  a phone'
+
     return inner
 
-
-@input_error
+#@input_error
 def add_contact(args, contacts):
     name, phone = args
-    
+    #print(args[0])
     contacts[name] = phone
     return "Contact added."
     
     
-@input_error
+#@input_error
 def change_contact(args, contacts):
     name, phone = args
-
     if name in contacts.keys():
         contacts[name] = phone
         return "Contact changed."
-    else:
-        return f'{name} have not phone in contacts'
     
-@input_error        
+#@input_error        
 def show_phone(args, contacts):
     name = args[0]
     return f'Phone {name} : {contacts[name]}'
