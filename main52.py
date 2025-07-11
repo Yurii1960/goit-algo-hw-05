@@ -1,7 +1,7 @@
 import re
 
 def generator_number(text):
-    pattern=r'\s\d+\.\d+\s' 
+    pattern=r'\d+\.\d+' 
     list_digits=re.findall(pattern,text)
     for digit in list_digits:
         yield float(digit)
