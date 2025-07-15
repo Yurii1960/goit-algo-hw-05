@@ -59,6 +59,9 @@ def main():
     print("Welcome to the assistant bot!")
     while True:
         user_input = input("Enter a command: ")
+        if  user_input.split()==[]:
+            print("Give me the command")
+            continue
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit"]:
